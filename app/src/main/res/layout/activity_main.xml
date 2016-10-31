@@ -10,8 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.calpoly.idulkin.podcrust.MainActivity">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/launch_play_button"
+        android:onClick="launchPlayPodcastActivity"/>
 </RelativeLayout>
