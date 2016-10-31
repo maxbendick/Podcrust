@@ -1,7 +1,10 @@
 package edu.calpoly.idulkin.podcrust;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.util.Log;
 
 import java.io.IOException;
@@ -10,6 +13,7 @@ import java.util.List;
 import audiosearch.Audiosearch;
 import audiosearch.exception.CredentialsNotFoundException;
 import audiosearch.model.TrendResult;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,5 +57,12 @@ public class MainActivity extends AppCompatActivity {
         });
         thread.start();
         Log.d("doRestTest", "initialized thread...");
+    }
+
+    public void launchPlayPodcastActivity(View view){
+        Context context = getApplicationContext();
+        Intent intent = new Intent(context, PlayPodcastActivity.class);
+
+        context.startActivity(intent);
     }
 }
