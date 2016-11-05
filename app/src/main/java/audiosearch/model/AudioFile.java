@@ -41,7 +41,15 @@ public class AudioFile {
     private String urlTitle;
 
     /**
-     * 
+     *
+     * @return
+     *     The mp3
+     */
+    @JsonProperty("mp3")
+    public String getMp3() { return mp3; }
+
+    /**
+     *
      * @return
      *     The id
      */
@@ -51,7 +59,7 @@ public class AudioFile {
     }
 
     /**
-     * 
+     *
      * @param id
      *     The id
      */
@@ -61,7 +69,7 @@ public class AudioFile {
     }
 
     /**
-     * 
+     *
      * @return
      *     The filename
      */
@@ -71,7 +79,7 @@ public class AudioFile {
     }
 
     /**
-     * 
+     *
      * @param filename
      *     The filename
      */
@@ -81,7 +89,7 @@ public class AudioFile {
     }
 
     /**
-     * 
+     *
      * @return
      *     The duration
      */
@@ -91,7 +99,7 @@ public class AudioFile {
     }
 
     /**
-     * 
+     *
      * @param duration
      *     The duration
      */
@@ -101,7 +109,7 @@ public class AudioFile {
     }
 
     /**
-     * 
+     *
      * @return
      *     The currentStatus
      */
@@ -111,7 +119,7 @@ public class AudioFile {
     }
 
     /**
-     * 
+     *
      * @param currentStatus
      *     The current_status
      */
@@ -121,7 +129,7 @@ public class AudioFile {
     }
 
     /**
-     * 
+     *
      * @return
      *     The url
      */
@@ -131,7 +139,7 @@ public class AudioFile {
     }
 
     /**
-     * 
+     *
      * @param url
      *     The url
      */
@@ -140,4 +148,7 @@ public class AudioFile {
         this.url = url;
     }
 
+    public void setMp3(String mp3) {
+        this.mp3 = mp3;
+    }
 }

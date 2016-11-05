@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 import audiosearch.Audiosearch;
 import audiosearch.exception.CredentialsNotFoundException;
+import audiosearch.model.AudioFile;
+import audiosearch.model.RelatedEpisodes;
 import audiosearch.model.TrendResult;
 import android.view.View;
 import android.widget.Button;
@@ -55,13 +57,24 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Audiosearch client = new Audiosearch()
-                            .setApplicationId(applicationId)
+                              .setApplicationId(applicationId)
                             .setSecret(secret)
                             .build();
 
                     List<TrendResult> body = client.getTrending().execute().body();
+
+                    // Getting every single mp3 link from every RelatedEpisodes from each trend
                     for (TrendResult trendResult : body) {
-                        Log.d("trend", trendResult.getTrend());
+                        String relatedEpisodes = "";
+                        for (RelatedEpisodes episode : trendResult.getRelatedEpisodes()) {
+                            for (AudioFile audiofile : episode.getAudioFiles()) {
+                                relatedEpisodes += audiofile.getMp3() + " ";
+                            }
+                        }
+                        if (relatedEpisodes.isEmpty()) {
+                            relatedEpisodes = "EMPTY";
+                        }
+                        Log.d("trend", trendResult.getTrend() + " " + relatedEpisodes + " " );
                     }
 
                 } catch (IOException e) {

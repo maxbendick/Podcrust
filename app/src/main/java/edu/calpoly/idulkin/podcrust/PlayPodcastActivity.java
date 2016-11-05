@@ -17,7 +17,8 @@ public class PlayPodcastActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_podcast);
-        String url = "http://soundbible.com/grab.php?id=1851&type=mp3";
+        // tried to see if mp3 url from audiosear.ch worked
+        String url = "https://www.audiosear.ch/media/audio_file/10a9a/257457899-the-bill-simmons-podcast-ep-3-shackhouse-masters-preview-and-tiger-talk-with-bill-simmons.mp3";
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
