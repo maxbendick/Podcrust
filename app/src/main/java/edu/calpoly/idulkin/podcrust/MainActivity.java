@@ -3,26 +3,24 @@ package edu.calpoly.idulkin.podcrust;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import audiosearch.Audiosearch;
 import audiosearch.exception.CredentialsNotFoundException;
 import audiosearch.model.AudioFile;
 import audiosearch.model.RelatedEpisodes;
 import audiosearch.model.TrendResult;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button b1,b2,b3,b4;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Audiosearch client = new Audiosearch()
-                              .setApplicationId(applicationId)
+                            .setApplicationId(applicationId)
                             .setSecret(secret)
                             .build();
 
@@ -68,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
                         String relatedEpisodes = "";
                         for (RelatedEpisodes episode : trendResult.getRelatedEpisodes()) {
                             for (AudioFile audiofile : episode.getAudioFiles()) {
-                                relatedEpisodes += audiofile.getMp3() + " ";
+//                                relatedEpisodes += episode.getTitle() + " " + audiofile.getMp3() + " ";
+                                AudioDescription audioDescription = new AudioDescription(episode, audiofile);
+                                Log.d("trend", audioDescription.toString());
                             }
                         }
                         if (relatedEpisodes.isEmpty()) {

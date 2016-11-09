@@ -1,11 +1,12 @@
 
 package audiosearch.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -39,6 +40,31 @@ public class AudioFile {
     private String listenlen;
     @JsonProperty("url_title")
     private String urlTitle;
+
+    /**
+     *
+     * @return
+     *     The urlTitle
+     */
+    @JsonProperty("url_title")
+    public String getUrlTitle() { return urlTitle; }
+
+
+    /**
+     *
+     * @return
+     *     The listenlen
+     */
+    @JsonProperty("litenlen")
+    public String getListenlen() { return listenlen; }
+
+    /**
+     *
+     * @return
+     *     The ogg
+     */
+    @JsonProperty("ogg")
+    public String getOgg() { return ogg; }
 
     /**
      *
