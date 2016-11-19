@@ -3,6 +3,7 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import java.io.IOException;
@@ -19,6 +20,11 @@ public class PlayPodcastActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_podcast);
         // tried to see if mp3 url from audiosear.ch worked
         String url = "https://www.audiosear.ch/media/audio_file/10a9a/257457899-the-bill-simmons-podcast-ep-3-shackhouse-masters-preview-and-tiger-talk-with-bill-simmons.mp3";
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.playback_bar);
+        setSupportActionBar(myToolbar);
+
+//        String url = "http://soundbible.com/grab.php?id=1851&type=mp3";
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
