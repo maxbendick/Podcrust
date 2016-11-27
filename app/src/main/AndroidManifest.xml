@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".PlayPodcastActivity">
         </activity>
+        <service android:name=".MediaPlayerService">
+        </service>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
