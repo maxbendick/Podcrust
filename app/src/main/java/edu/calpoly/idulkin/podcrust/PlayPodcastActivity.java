@@ -34,21 +34,6 @@ public class PlayPodcastActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.playback_bar);
         setSupportActionBar(myToolbar);
-
-//        String url = "http://soundbible.com/grab.php?id=1851&type=mp3";
-//        mediaPlayer = new MediaPlayer();
-//        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//        try {
-//            Log.d(TAG, "Opened media stream");
-//            mediaPlayer.setDataSource(url);
-//            mediaPlayer.prepare(); // might take long! (for buffering, etc)
-//            mediaPlayer.start();
-//
-//            play = true;
-//        } catch(IOException e){
-//            Log.e(TAG, "Failed to open media stream");
-//        }
-
     }
 
     @Override
@@ -72,8 +57,6 @@ public class PlayPodcastActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        mediaPlayer.release();
-        mediaPlayer = null;
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -72,13 +72,14 @@ public class MediaPlayerService extends Service
 
         startForeground(11, CrustNotification);
 
-//        //Initializes AudioManager, for handling audio focus
-//        int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC,
-//                AudioManager.AUDIOFOCUS_GAIN);
-//
-//        if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-//            // could not get audio focus.
-//        }
+        //Initializes AudioManager, for handling audio focus
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC,
+                AudioManager.AUDIOFOCUS_GAIN);
+
+        if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            // could not get audio focus.
+        }
 
     }
 
@@ -134,15 +135,41 @@ public class MediaPlayerService extends Service
     }
 
     public void onAudioFocusChange(int focusChange) {
-        // Do something based on focus change...
+        switch (focusChange) {
+            case AudioManager.AUDIOFOCUS_GAIN:
+                // resume playback
+                if (mediaPlayer == null) initMediaPlayer();
+                else if (state == MP_STATE.STOPPED) mediaPlayer.start();
+                mediaPlayer.setVolume(1.0f, 1.0f);
+                break;
+
+            case AudioManager.AUDIOFOCUS_LOSS:
+                // Lost focus for an unbounded amount of time: stop playback and release media player
+                if (state == MP_STATE.PLAYING) mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer = null;
+                break;
+
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                // Lost focus for a short time, but we have to stop
+                // playback. We don't release the media player because playback
+                // is likely to resume
+                if (state == MP_STATE.PLAYING) //mediaPlayer.pause();
+                break;
+
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                // Lost focus for a short time, but it's ok to keep playing
+                // at an attenuated level
+                if (mediaPlayer.isPlaying()) mediaPlayer.setVolume(0.1f, 0.1f);
+                break;
+        }
     }
 
     @Override
     public void onDestroy(){
         super.onDestroy();
 
-        mediaPlayer.release();
-        mediaPlayer = null;
+        if(mediaPlayer == null) mediaPlayer.release();
 
         wifiLock.release();
 
