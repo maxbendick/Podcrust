@@ -12,10 +12,10 @@ import audiosearch.model.RelatedEpisodes;
 import audiosearch.model.Urls;
 
 /**
- * Created by Danny Chianglin on 11/8/2016.
+ * Created by Jonathan Chianglin on 11/8/2016.
  */
 
-public class AudioDescription {
+public class TrendAudio {
     /*
      * RelatedEpisode object from TrendResult
      */
@@ -102,7 +102,7 @@ public class AudioDescription {
      */
     private String urlTitle;
 
-    public AudioDescription(RelatedEpisodes rE, AudioFile aF) {
+    public TrendAudio(RelatedEpisodes rE, AudioFile aF) {
         this.rE = rE;
         this.aF = aF;
         this.id = rE.getId();

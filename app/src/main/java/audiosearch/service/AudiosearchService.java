@@ -25,8 +25,15 @@ public interface AudiosearchService {
     @GET("episodes/{id}")
     Call<EpisodeResult> getEpisode(@Path("id") long id, @Header("Authorization") String bearer);
 
+    @GET("/search/shows/{query}")
+    Call<List<Object>> search (@Path("query") String query);
+
     @GET("search/episodes/{query}")
-    Call<EpisodeQueryResult> searchEpisodes(@Path("query") String query, @Header("Authorization") String bearer);
+    Call<EpisodeQueryResult> searchEpisodes(@Path("query") String query,@Header("Authorization") String bearer);
+
+    //testing if i need bearer to search the episodes
+    @GET("search/episodes/{query}")
+    Call<EpisodeQueryResult> searchEpisodes(@Path("query") String query);
 
     @GET("episodes/{id}/related")
     Call<List<Object>> getRelatedEpisodes(@Path("id") long id);

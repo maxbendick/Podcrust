@@ -35,6 +35,10 @@ public class Entity {
     private String extra;
     @JsonProperty("entity")
     private String entity;
+    @JsonProperty("is_confirmed")
+    private String is_confirmed;
+    @JsonProperty("timestamps")
+    private String timestamps;
 
     /**
      * 

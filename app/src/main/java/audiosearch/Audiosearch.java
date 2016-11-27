@@ -1,5 +1,7 @@
 package audiosearch;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -72,9 +74,10 @@ public class Audiosearch {
     }
 
     public void Authorize() throws IOException{
-        AuthResult authResult = authorizationService.getAccessToken(GRANT_TYPE, AUTH_SIGNATURE).execute().body();
+        AuthResult authResult = getAccessToken();
         this.AccessToken = authResult.accessToken;
         this.AUTH_TOKEN  = "Bearer" + " " + this.AccessToken;
+        Log.d(TAG, "Authorize: AccessToken is " + this.AccessToken + " AUTH_TOKEN " + this.AUTH_TOKEN);
     }
 
     public Audiosearch build() throws CredentialsNotFoundException, UnsupportedEncodingException {
@@ -141,6 +144,7 @@ public class Audiosearch {
     public Call<EpisodeQueryResult> searchEpisodes(String query) throws Exception{
         Authorize();
         return restService.searchEpisodes(query,AUTH_TOKEN);
+//        return restService.searchEpisodes(query);
     }
 
     // get episode details
@@ -150,8 +154,8 @@ public class Audiosearch {
     }
 
     // search for shows, episodes and people
-    public Call<List<Object>> search(String query, Filter filter){
-
+    public Call<List<Object>> search(String query, Filter filter) throws IOException{
+        Authorize();
         switch (filter){
             case Show:
                 break;
@@ -160,8 +164,8 @@ public class Audiosearch {
             case People:
                 break;
         }
-
         return null;
+//       return restService.search(query);
     }
 
     // get related episodes
@@ -200,7 +204,6 @@ public class Audiosearch {
     }
 
     // get Trending
-
     public Call<List<TrendResult>> getTrending() throws IOException{
         Authorize();
         return restService.getTrending(AUTH_TOKEN);
