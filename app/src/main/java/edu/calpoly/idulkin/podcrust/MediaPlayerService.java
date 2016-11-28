@@ -106,7 +106,7 @@ public class MediaPlayerService extends Service
         try {
             mediaPlayer.setDataSource(url);
         }catch(IOException e){
-            Log.e("Media Player Sevice:", "Failed to open media stream from URL");
+            Log.e("Media Player Service:", "Failed to open media stream from URL");
         }
         mediaPlayer.prepareAsync(); // prepare async to not block main thread
 
