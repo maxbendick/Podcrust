@@ -1,5 +1,8 @@
 package edu.calpoly.idulkin.podcrust;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +13,10 @@ import audiosearch.model.EpisodeResult;
 import audiosearch.model.ImageFile;
 
 /**
- * Created by Danny Chianglin on 11/27/2016.
+ * Created by Jonathan Chianglin on 11/27/2016.
  */
 
-public class SearchAudio {
+public class SearchAudio implements Parcelable{
     // EpisodeResult object from EpisodeQueryResult
     private EpisodeResult er;
     // AudioFile object from List<AudioFile> from EpisodeResult.getAudioFiles()
@@ -112,12 +115,39 @@ public class SearchAudio {
         this.urlTitle = af.getUrlTitle();
     }
 
+    public SearchAudio(String title, String mp3) {
+        this.title = title;
+        this.mp3 = mp3;
+    }
+
+    public static final Parcelable.Creator<SearchAudio> CREATOR = new Parcelable.Creator<SearchAudio>() {
+        @Override
+        public SearchAudio createFromParcel(Parcel in) {
+            SearchAudio e = new SearchAudio(in.readString(), in.readString());
+            return e;
+        }
+
+        @Override
+        public SearchAudio[] newArray(int size) {
+            return new SearchAudio[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(mp3);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    // Getter and setter methods below
     public EpisodeResult getEr() {
         return er;
     }
-
-
-    // All getter and setter methods
 
     public void setEr(EpisodeResult er) {
         this.er = er;

@@ -40,7 +40,13 @@ public class PlayPodcastActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         // Bind to LocalService
+        String mp3, title;
+        Intent i = getIntent();
+        mp3 = i.getStringExtra("MP3");
+        title = i.getStringExtra("TITLE");
+
         Intent intent = new Intent(this, MediaPlayerService.class);
+        intent.putExtra("MP3", mp3);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 

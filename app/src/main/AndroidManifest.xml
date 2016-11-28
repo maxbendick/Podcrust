@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.calpoly.idulkin.podcrust">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,17 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".MainActivity">
+        </activity>
+
+        <activity android:name=".PlayPodcastActivity"></activity>
+
+        <service android:name=".MediaPlayerService"></service>
+
+        <activity
+            android:name=".EpisodeListActivity"
+            android:label="@string/title_episode_list"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlayPodcastActivity">
+        <activity
+            android:name=".EpisodeDetailActivity"
+            android:label="@string/title_episode_detail"
+            android:parentActivityName=".EpisodeListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.calpoly.idulkin.podcrust.EpisodeListActivity" />
         </activity>
-        <service android:name=".MediaPlayerService">
-        </service>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
 </manifest>

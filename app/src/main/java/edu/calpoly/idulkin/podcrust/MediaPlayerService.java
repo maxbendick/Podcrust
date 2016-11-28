@@ -50,8 +50,8 @@ public class MediaPlayerService extends Service
     @Override
     public void onCreate(){
         super.onCreate();
-
-        initMediaPlayer();
+// moved to IBinder
+//        initMediaPlayer();
         Log.d(TAG, "Starting service");
 
         //Keeps using the wifi to stream if the device goes to sleep
@@ -84,6 +84,13 @@ public class MediaPlayerService extends Service
     }
 
     public IBinder onBind(Intent intent) {
+        String mp3 = intent.getStringExtra("MP3");
+        Log.d(TAG, "onBind");
+        if (mp3 != null) {
+            Log.d(TAG, "onBind: mp3 is not null");
+            url = mp3;
+        }
+        initMediaPlayer();
         return mBinder;
     }
 

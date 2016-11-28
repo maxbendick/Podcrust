@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        doRestTest();
-        doSearchTest();
+//        doSearchTest();
     }
 
     private void doRestTest() {
@@ -128,17 +128,14 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "run: " + call.isExecuted());
                     Log.d(TAG, "run: " + response.message());
                     Log.d(TAG, "run: " + response.isSuccessful());
-//                    Log.d(TAG, "run: " + eqr.getQuery());
-//                    Log.d(TAG, "run: " + eqr.getResults());
-//                    Log.d(TAG, "run: " + eqr.getTotalResults());
-//                    EpisodeQueryResult eqr = client.searchEpisodes("Obama").execute().body();
-//                    List<EpisodeResult> results = eqr.getResults();
                     List<EpisodeResult> list = eqr.getResults();
                     for (EpisodeResult episodeResult : list) {
                         for (AudioFile audiofile : episodeResult.getAudioFiles()) {
 //                                relatedEpisodes += episode.getTitle() + " " + audiofile.getMp3() + " ";
                             SearchAudio sa = new SearchAudio(episodeResult, audiofile);
                             Log.d("searched", sa.getShow_title());
+                            // sa.getMp3() gets the mp3 in String format
+                            Log.d("searched", sa.getMp3());
                         }
                     }
 
@@ -161,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchPlayPodcastActivity(View view){
         Context context = getApplicationContext();
-        Intent intent = new Intent(context, PlayPodcastActivity.class);
+        Intent intent = new Intent(context, EpisodeListActivity.class);
 
         context.startActivity(intent);
     }
