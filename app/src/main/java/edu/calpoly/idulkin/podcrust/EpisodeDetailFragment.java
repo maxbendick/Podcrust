@@ -68,9 +68,9 @@ public class EpisodeDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.episode_detail, container, false);
 
         // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.episode_detail)).setText(mItem.details);
-        }
+//        if (mItem != null) {
+//            ((TextView) rootView.findViewById(R.id.episode_detail)).setText(mItem.details);
+//        }
 
         return rootView;
     }

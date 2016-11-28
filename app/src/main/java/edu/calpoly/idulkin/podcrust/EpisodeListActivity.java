@@ -47,7 +47,7 @@ public class EpisodeListActivity extends AppCompatActivity {
     private boolean mTwoPane;
     private static final String TAG = "EpisodeListActivity";
     public static ArrayList<SearchAudio> searchAudioList;
-    private SimpleItemRecyclerViewAdapter a;
+    private SimpleItemRecyclerViewAdapter episodeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +71,8 @@ public class EpisodeListActivity extends AppCompatActivity {
             searchAudioList = savedInstanceState.getParcelableArrayList("SEARCHAUDIOLIST");
         }
 
-        a = new SimpleItemRecyclerViewAdapter(searchAudioList);
-        recyclerView.setAdapter(a);
+        episodeAdapter = new SimpleItemRecyclerViewAdapter(searchAudioList);
+        recyclerView.setAdapter(episodeAdapter);
 
         Button clickButton = (Button) findViewById(R.id.submit);
         clickButton.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +85,6 @@ public class EpisodeListActivity extends AppCompatActivity {
                 if (query.trim().length() > 0) {
                     header.setText("Search episode");
                     doSearch(query);
-                    a.notifyDataSetChanged();
                 } else {
                     Toast.makeText(getApplicationContext(), "Search for an episode", Toast.LENGTH_SHORT).show();
                 }
@@ -110,7 +109,6 @@ public class EpisodeListActivity extends AppCompatActivity {
                     if (query.trim().length() > 0) {
                         header.setText("Search episode");
                         doSearch(query);
-                        a.notifyDataSetChanged();
                     } else {
                         Toast.makeText(getApplicationContext(), "Search for an episode", Toast.LENGTH_SHORT).show();
                     }
@@ -247,7 +245,7 @@ public class EpisodeListActivity extends AppCompatActivity {
                             Log.d("searched ", "> added  " + sa.getTitle() + " to List");
                         }
                     }
-
+                    episodeAdapter.notifyDataSetChanged();
 
                 } catch (IOException e) {
                     e.printStackTrace();
