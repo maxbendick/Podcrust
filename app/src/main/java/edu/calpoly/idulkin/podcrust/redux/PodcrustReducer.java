@@ -11,12 +11,19 @@ public class PodcrustReducer {
         }
 
         if (action instanceof SearchAction) {
-            return state.assignSearchQuery(((SearchAction) action).query);
+            return state
+                .assignSearchQuery(((SearchAction) action).query)
+                .assignRoute(PodcrustState.Route.SEARCH);
         }
         else if (action instanceof SelectShowAction) {
-            return state.assignSelectedShow(((SelectShowAction) action).show);
+            return state
+                .assignSelectedShow(((SelectShowAction) action).show)
+                .assignRoute(PodcrustState.Route.SHOW);
         }
-
+        else if (action instanceof DisplayTrendingAction) {
+            return state
+                .assignRoute(PodcrustState.Route.TRENDING);
+        }
 
         return state;
     }

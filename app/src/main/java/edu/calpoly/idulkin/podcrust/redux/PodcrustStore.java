@@ -14,4 +14,14 @@ public class PodcrustStore {
                     return PodcrustReducer.reduce(a, s);
                 }
             }, null, null);
+
+    public static Runnable subscribe(final Runnable r) {
+        return store.subscribe(r);
+    }
+    public static PodcrustState getState() {
+        return store.getState();
+    }
+    public PodcrustState dispatch(PodcrustAction a) {
+        return store.dispatch(a);
+    }
 }
