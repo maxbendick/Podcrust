@@ -22,7 +22,8 @@ public class PodcrustState {
         TRENDING, SEARCH, SHOW
     }
 
-    public PodcrustState(Show selectedShow, Episode selectedEpisode, List<Show> shows, List<Episode> episodes, String searchQuery, Route route, Trending trending) {
+    public PodcrustState(Show selectedShow, Episode selectedEpisode, List<Show> shows,
+                         List<Episode> episodes, String searchQuery, Route route, Trending trending) {
         this.selectedShow = selectedShow;
         this.selectedEpisode = selectedEpisode;
         this.shows = shows;
@@ -39,7 +40,7 @@ public class PodcrustState {
         this.episodes = null;
         this.searchQuery = null;
         this.route = Route.TRENDING;
-        this.trending = null
+        this.trending = null;
     }
     public PodcrustState assignSelectedShow(PodcrustState.Show selectedShow) {
         return new PodcrustState(selectedShow, this.selectedEpisode, this.shows, this.episodes, this.searchQuery, this.route, this.trending);
