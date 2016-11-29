@@ -20,6 +20,13 @@ public class PodcrustState {
         this.episodes = episodes;
         this.searchQuery = searchQuery;
     }
+    public PodcrustState() {
+        this.selectedShow = null;
+        this.selectedEpisode = null;
+        this.shows = null;
+        this.episodes = null;
+        this.searchQuery = null;
+    }
     public PodcrustState assignSelectedShow(PodcrustState.Show selectedShow) {
         return new PodcrustState(selectedShow, this.selectedEpisode, this.shows, this.episodes, this.searchQuery);
     }
