@@ -21,7 +21,7 @@ public class PodcrustStore {
     public static PodcrustState getState() {
         return store.getState();
     }
-    public PodcrustState dispatch(PodcrustAction a) {
+    public static PodcrustState dispatch(PodcrustAction a) {
         return store.dispatch(a);
     }
 }
