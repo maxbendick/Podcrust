@@ -5,7 +5,7 @@ package edu.calpoly.idulkin.podcrust.redux;
  */
 
 public class PodcrustReducer {
-    public static PodcrustState reduce(PodcrustState state, PodcrustAction action) {
+    public static PodcrustState reduce(PodcrustAction action, PodcrustState state) {
         if (state == null) {
             return new PodcrustState();
         }
