@@ -83,7 +83,7 @@ public class EpisodeListActivity extends AppCompatActivity {
                 String query = header.getText().toString();
 
                 if (query.trim().length() > 0) {
-                    header.setText("Search episode");
+                    header.setHint("Search episode");
                     doSearch(query);
                 } else {
                     Toast.makeText(getApplicationContext(), "Search for an episode", Toast.LENGTH_SHORT).show();
@@ -107,7 +107,7 @@ public class EpisodeListActivity extends AppCompatActivity {
                     String query = header.getText().toString();
 
                     if (query.trim().length() > 0) {
-                        header.setText("Search episode");
+                        header.setHint("Search episode");
                         doSearch(query);
                     } else {
                         Toast.makeText(getApplicationContext(), "Search for an episode", Toast.LENGTH_SHORT).show();
