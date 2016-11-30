@@ -42,11 +42,10 @@ dependencies {
 
     compile 'com.github.trikita:jedux:80389e26dc'
 
-    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
-    //compile 'com.fasterxml.jackson.core:jackson-databind:2.3.2'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.5'
-    compile 'com.fasterxml.jackson.core:jackson-core:2.7.5'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.5'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.7.5'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.5'
+    compile 'org.springframework.android:spring-android-rest-template:2.0.0.M3'
 }
 
 
