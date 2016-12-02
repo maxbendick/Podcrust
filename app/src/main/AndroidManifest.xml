@@ -11,19 +11,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".PlayPodcastActivity" />
 
-        <activity android:name=".PlayPodcastActivity"></activity>
-
-        <service android:name=".MediaPlayerService"></service>
+        <service android:name=".MediaPlayerService" />
 
         <activity
             android:name=".EpisodeListActivity"
             android:label="@string/title_episode_list"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".EpisodeDetailActivity"
             android:label="@string/title_episode_detail"
@@ -34,8 +30,13 @@
                 android:value="edu.calpoly.idulkin.podcrust.EpisodeListActivity" />
         </activity>
         <activity
-            android:name=".SearchedList.SearchListActivity"
-            android:label="Search Podcasts"
+            android:name=".FavoritesActivity"
+            android:label="Favorites"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:label="Home"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
