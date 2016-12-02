@@ -23,6 +23,7 @@ import audiosearch.model.TrendResult;
 import audiosearch.service.AudiosearchService;
 import audiosearch.service.AuthorizationService;
 import audiosearch.util.HttpUtil;
+import edu.calpoly.idulkin.podcrust.rest.SearchShowResult.SearchShowResult;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -158,14 +159,20 @@ public class Audiosearch {
         Authorize();
         switch (filter){
             case Show:
-                break;
+                break;//return restService.getShowList(query, AUTH_TOKEN);
             case Episode:
                 break;
             case People:
                 break;
         }
         return null;
-//       return restService.search(query);
+        //return restService.search(query);
+    }
+
+    //added by Max - change Object to a Show model
+    public Call<SearchShowResult> searchShows(String query) throws IOException {
+        Authorize();
+        return restService.getShowList(query, AUTH_TOKEN);
     }
 
     // get related episodes

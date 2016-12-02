@@ -23,6 +23,7 @@ import audiosearch.model.EpisodeQueryResult;
 import audiosearch.model.EpisodeResult;
 import audiosearch.model.RelatedEpisodes;
 import audiosearch.model.TrendResult;
+import edu.calpoly.idulkin.podcrust.rest.SearchShowResult.SearchShowResult;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                             .build();
 
                     List<TrendResult> body = client.getTrending().execute().body();
+
+                    SearchShowResult searchShowResult = client.searchShows("startup").execute().body();
 
                     // Getting every single mp3 link from every RelatedEpisodes from each trend
                     for (TrendResult trendResult : body) {

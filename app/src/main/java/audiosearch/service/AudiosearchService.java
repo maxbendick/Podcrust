@@ -9,6 +9,7 @@ import audiosearch.model.EpisodeQueryResult;
 import audiosearch.model.EpisodeResult;
 import audiosearch.model.TrendResult;
 
+import edu.calpoly.idulkin.podcrust.rest.SearchShowResult.SearchShowResult;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -54,7 +55,7 @@ public interface AudiosearchService {
     Call<List<Object>> getRelatedShows(@Path("id") long id);
 
     @GET("search/shows/{query}")
-    Call<List<Object>> getShowList(@Path("query") String query);
+    Call<SearchShowResult> getShowList(@Path("query") String query, @Header("Authorization") String bearer);
 
     @GET("people/{id}")
     Call<Object> getPerson(@Path("id") long id);
