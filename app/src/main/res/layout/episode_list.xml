@@ -13,30 +13,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="edu.calpoly.idulkin.podcrust.EpisodeListActivity"
     tools:showIn="@layout/activity_episode_list">
-
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:id="@+id/linearLayout">
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_weight="0.75"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Search episode"
-            android:ems="10"
-            android:id="@+id/header" />
-
-        <Button
-            android:text="@string/submit"
-            android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:layout_height="wrap_content"
-            android:id="@+id/submit"/>
-    </LinearLayout>
+        android:id="@+id/showTitle"/>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

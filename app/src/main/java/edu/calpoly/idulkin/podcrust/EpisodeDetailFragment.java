@@ -1,15 +1,17 @@
 package edu.calpoly.idulkin.podcrust;
 
-import android.app.Activity;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import edu.calpoly.idulkin.podcrust.dummy.DummyContent;
+import com.squareup.picasso.Picasso;
+
+import static com.google.android.gms.internal.zzs.TAG;
 
 /**
  * A fragment representing a single Episode detail screen.
@@ -17,7 +19,7 @@ import edu.calpoly.idulkin.podcrust.dummy.DummyContent;
  * in two-pane mode (on tablets) or a {@link EpisodeDetailActivity}
  * on handsets.
  */
-public class EpisodeDetailFragment extends Fragment {
+public class EpisodeDetailFragment extends ContractFragment<EpisodeDetailFragment.Contract> {
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -34,12 +36,14 @@ public class EpisodeDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public static EpisodeDetailFragment newInstance(String title, String mp3) {
+    public static EpisodeDetailFragment newInstance(String title, String mp3, String description, String image) {
         EpisodeDetailFragment edf = new EpisodeDetailFragment();
 
         Bundle bundle = new Bundle();
         bundle.putString("TITLE", title);
         bundle.putString("MP3", mp3);
+        bundle.putString("DESCRIPTION", description);
+        bundle.putString("IMAGE", image);
         edf.setArguments(bundle);
         return  edf;
     }
@@ -65,7 +69,16 @@ public class EpisodeDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: Inflating views");
         View rootView = inflater.inflate(R.layout.episode_detail, container, false);
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.detail_toolbar);
+        toolbar.setTitle("" + this.getArguments().getString("TITLE"));
+
+        ImageView iv = (ImageView) rootView.findViewById(R.id.image);
+        Picasso.with(getActivity()).load(this.getArguments().getString("IMAGE")).into(iv);
+        TextView desc = (TextView) rootView.findViewById(R.id.descriptionTV);
+        desc.setText("" + this.getArguments().getString("DESCRIPTION"));
 
         // Show the dummy content as text in a TextView.
 //        if (mItem != null) {
@@ -75,5 +88,8 @@ public class EpisodeDetailFragment extends Fragment {
         return rootView;
     }
 
+    public interface Contract {
+
+    }
 
 }

@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     android:baselineAligned="false"
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
@@ -21,7 +25,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/content_main"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -32,30 +36,10 @@
         tools:context="edu.calpoly.idulkin.podcrust.EpisodeListActivity"
         tools:showIn="@layout/activity_episode_list">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentTop="true"
-            android:id="@+id/linearLayout">
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_weight="0.75"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text="Search episode"
-                android:ems="10"
-                android:id="@+id/header" />
-
-            <Button
-                android:text="@string/submit"
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_height="wrap_content"
-                android:id="@+id/submit"/>
-
-        </LinearLayout>
+            android:id="@+id/showTitle"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,6 +50,7 @@
     <FrameLayout
         android:id="@+id/episode_detail_container"
         android:layout_width="0dp"
+        android:paddingTop="40dp"
         android:layout_height="match_parent"
         android:layout_weight="3" />
 

@@ -1,4 +1,4 @@
-package edu.calpoly.idulkin.podcrust.SearchedList;
+package edu.calpoly.idulkin.podcrust.searchedList;
 
 import android.content.Context;
 import android.util.Log;

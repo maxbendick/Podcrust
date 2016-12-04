@@ -19,7 +19,12 @@
         <activity
             android:name=".EpisodeListActivity"
             android:label="@string/title_episode_list"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+        </activity>
         <activity
             android:name=".EpisodeDetailActivity"
             android:label="@string/title_episode_detail"
@@ -38,11 +43,6 @@
             android:name=".HomeActivity"
             android:label="Home"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

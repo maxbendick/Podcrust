@@ -1,7 +1,8 @@
-package edu.calpoly.idulkin.podcrust.SearchedList;
+package edu.calpoly.idulkin.podcrust.searchedList;
+
+import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import audiosearch.Audiosearch;
@@ -16,7 +17,7 @@ public class SearchListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new SearchListView(this));
-
+// pass SearchShowResult to have query
         final String callbackUrl = "urn:ietf:wg:oauth:2.0:oob";
         final String applicationId = "c2b235f2620e362157a40aec609e737fe5a2547784933e00201ff90358e092c5";
         final String secret = "bee75fbb20ce6b45b64113b44208d12aeca02121fee8ea40f1bd9f44b491ba1c";
@@ -29,11 +30,10 @@ public class SearchListActivity extends AppCompatActivity {
                         .setSecret(secret)
                         .build();
 
-                SearchShowResult searchShowResult = client.searchShows("startup").execute().body();
+                SearchShowResult searchShowResult = client.searchShows("basketball").execute().body();
                 Log.d("searchresult", searchShowResult.toString());
                 Log.d("searchresult", searchShowResult.getResults().get(0).getTitle());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Log.d("searchlist", "failure to search");
                 Log.d("searchlist", e.toString());
             }
