@@ -1,4 +1,4 @@
-package edu.calpoly.idulkin.podcrust.SearchedList;
+package edu.calpoly.idulkin.podcrust.searchedList;
 
 /**
  * Created by Max on 12/1/2016.

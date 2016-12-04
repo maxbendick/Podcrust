@@ -2,9 +2,11 @@ package edu.calpoly.idulkin.podcrust;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 /**
@@ -17,24 +19,24 @@ public class EpisodeDetailActivity extends AppCompatActivity {
 
     private String title;
     private String mp3;
+    private String description;
+    private String img;
+    private static final String TAG = "EpisodeDetailActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play_podcast);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_episode_detail);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+//        setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        title = intent.getStringExtra("TITLE");
-        mp3 = intent.getStringExtra("MP3");
-//        intent = new Intent(this, MediaPlayerService.class);
-//        intent.putExtra("MP3", mp3);
-//        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-        Intent mIntent = new Intent(this, PlayPodcastActivity.class);
-        mIntent.putExtra("MP3", mp3);
-        mIntent.putExtra("TITLE", title);
-        startActivity(mIntent);
+        Bundle bundle = getIntent().getExtras();
+
+        title = bundle.getString("TITLE");
+        mp3 = bundle.getString("MP3");
+        description = bundle.getString("DESCRIPTION");
+        img = bundle.getString("IMAGE");
+        Log.d(TAG, "onCreate: " + title + mp3 + description + img);
 
 
         // Show the Up button in the action bar.
@@ -55,15 +57,25 @@ public class EpisodeDetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putString(EpisodeDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(EpisodeDetailFragment.ARG_ITEM_ID));
-            EpisodeDetailFragment fragment = new EpisodeDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.episode_detail_container, fragment)
-                    .commit();
+//            Bundle arguments = new Bundle();
+//            arguments.putString(EpisodeDetailFragment.ARG_ITEM_ID,
+//                    getIntent().getStringExtra(EpisodeDetailFragment.ARG_ITEM_ID));
+//            EpisodeDetailFragment fragment = new EpisodeDetailFragment();
+//            fragment.setArguments(arguments);
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.episode_detail_container, fragment)
+//                    .commit();
         }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        EpisodeDetailFragment fragment = (EpisodeDetailFragment) fragmentManager.findFragmentById(R.id.episode_detail);
+
+        if (fragment == null) {
+            EpisodeDetailFragment edf = EpisodeDetailFragment.newInstance(title, mp3, description, img);
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.episode_detail, edf);
+            fragmentTransaction.commit();
+        }
+
     }
 
     @Override

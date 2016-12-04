@@ -1,6 +1,7 @@
-package edu.calpoly.idulkin.podcrust.SearchedList;
+package edu.calpoly.idulkin.podcrust.searchedList;
 
 import android.view.View;
+
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -67,7 +68,7 @@ public class ShowAdapter extends BaseAdapter {
                         init(() -> {
                             ImageView v = Anvil.currentView();
                             Ion.with(v)
-                            .load(getItem(i).imageUrl);
+                                    .load(getItem(i).imageUrl);
                         });
                     });
                     textView(() -> {
