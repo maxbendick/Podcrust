@@ -50,8 +50,8 @@ public class MediaPlayerService extends Service
     @Override
     public void onCreate(){
         super.onCreate();
-// moved to IBinder
-//        initMediaPlayer();
+
+        initMediaPlayer();
         Log.d(TAG, "Starting service");
 
         //Keeps using the wifi to stream if the device goes to sleep
@@ -84,13 +84,13 @@ public class MediaPlayerService extends Service
     }
 
     public IBinder onBind(Intent intent) {
-        String mp3 = intent.getStringExtra("MP3");
-        Log.d(TAG, "onBind");
-        if (mp3 != null) {
-            Log.d(TAG, "onBind: mp3 is not null");
-            url = mp3;
-        }
-        initMediaPlayer();
+//        String mp3 = intent.getStringExtra("MP3");
+//        Log.d(TAG, "onBind");
+//        if (mp3 != null) {
+//            Log.d(TAG, "onBind: mp3 is not null" + mp3);
+//            url = mp3;
+//        }
+
         return mBinder;
     }
 
@@ -103,16 +103,18 @@ public class MediaPlayerService extends Service
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnPreparedListener(this);
 
-        try {
-            mediaPlayer.setDataSource(url);
-        }catch(IOException e){
-            Log.e("Media Player Service:", "Failed to open media stream from URL");
-        }
-        mediaPlayer.prepareAsync(); // prepare async to not block main thread
+        //Moved this into a helper method, called by a bound activity
+//        try {
+//            mediaPlayer.setDataSource(url);
+//        }catch(IOException e){
+//            Log.e("Media Player Service:", "Failed to open media stream from URL");
+//        }
+//        mediaPlayer.prepareAsync(); // prepare async to not block main thread
 
         mediaPlayer.setOnErrorListener(this);
         mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
 
+//        mediaPlayer.stop();
         state = MP_STATE.STOPPED;
     }
 
@@ -130,6 +132,23 @@ public class MediaPlayerService extends Service
         mediaPlayer.pause();
         Log.e("Media Player Service", "Pause playback");
         state = MP_STATE.PAUSED;
+    }
+
+    public void stop(){
+        mediaPlayer.stop();
+        Log.e("Media Player Service", "Stop playback");
+        state = MP_STATE.STOPPED;
+    }
+
+    public void setSource(String source){
+        try{
+            mediaPlayer.setDataSource(source);
+        }catch(IOException e){
+            Log.e("Media Player Service:", "Failed to open media stream from URL");
+        }
+        mediaPlayer.prepareAsync(); // prepare async to not block main thread
+
+        this.url = source;
     }
 
     @Override
